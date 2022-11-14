@@ -51,7 +51,7 @@ export default function RegisterVideo() {
                             title: formCadastro.values.titulo,
                             url: formCadastro.values.url,
                             thumb:getThumbnail(formCadastro.values.url),
-                            playlist:"Bubble",
+                            playlist:formCadastro.values.playlist,
                         })
                         .then((oqueveio) => {
                             console.log(oqueveio);
