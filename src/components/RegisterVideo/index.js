@@ -26,7 +26,7 @@ export default function RegisterVideo() {
     const formCadastro = useForm({
         initialValues: {titulo:"Frost punk", url:"http://youtube.com.."}
     });
-    const [formVisivel, setFormVisivel] = React.useState(true);
+    const [formVisivel, setFormVisivel] = React.useState(false);
 
     return (
         <StyledRegisterVideo>
