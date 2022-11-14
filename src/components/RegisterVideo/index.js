@@ -1,5 +1,6 @@
 import React from "react";
 import { StyledRegisterVideo } from "./style"
+import { createClient } from "@supabase/supabase-js"
 
 // Custom Hook 
 function useForm(propsDoForm){
@@ -13,7 +14,7 @@ function useForm(propsDoForm){
             console.log(value);
             setValues({
                 ...values,
-                name:value,
+                [name]:value,
             });
         },
         clearForm() {
@@ -22,9 +23,18 @@ function useForm(propsDoForm){
     };
 }
 
+const PROJECT_URL = "https://quuxgkmoqxxbhsubdfvc.supabase.co";
+const PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1dXhna21vcXh4YmhzdWJkZnZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njg0MTg3NjgsImV4cCI6MTk4Mzk5NDc2OH0.ghuB4iqz_rn8Jf6SrX1b0EQL8nvpT_Qjv4bXnCA0vEo";
+const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
+
+// get youtube thumbnail from video url
+function getThumbnail(url){
+    return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
+}
+
 export default function RegisterVideo() {
     const formCadastro = useForm({
-        initialValues: {titulo:"Frost punk", url:"http://youtube.com.."}
+        initialValues: {titulo:"", url:""}
     });
     const [formVisivel, setFormVisivel] = React.useState(false);
 
@@ -36,7 +46,20 @@ export default function RegisterVideo() {
             {formVisivel
                 ? (
                     <form onSubmit={(evento) => {
-                        evento.preventDefault();  
+                        evento.preventDefault();
+                        supabase.from("video").insert({
+                            title: formCadastro.values.titulo,
+                            url: formCadastro.values.url,
+                            thumb:getThumbnail(formCadastro.values.url),
+                            playlist:"Bubble",
+                        })
+                        .then((oqueveio) => {
+                            console.log(oqueveio);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
+
                         setFormVisivel(false);
                         formCadastro.clearForm();
                     }}>
@@ -54,6 +77,12 @@ export default function RegisterVideo() {
                                     placeholder="URL"
                                     name="url"
                                     value={formCadastro.values.url} 
+                                    onChange={formCadastro.handleChange}
+                                />
+                                <input 
+                                    placeholder="Playlist"
+                                    name="playlist"
+                                    value={formCadastro.values.playlist} 
                                     onChange={formCadastro.handleChange}
                                 />
                             <button type="submit">
