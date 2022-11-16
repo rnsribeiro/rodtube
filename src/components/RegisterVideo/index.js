@@ -85,6 +85,7 @@ export default function RegisterVideo() {
                                     value={formCadastro.values.playlist} 
                                     onChange={formCadastro.handleChange}
                                 />
+                                <img src={getThumbnail(formCadastro.values.url)} alt="" width={287} height={200}/>
                             <button type="submit">
                                 Cadastrar
                             </button>
