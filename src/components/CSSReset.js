@@ -7,6 +7,11 @@ export const CSSReset = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  /* Configurações de estilo da imagem da página. */
+  img {
+    border-radius: 10px;
+  }
+  
   body {
     font-family: sans-serif;
     background-color: ${({ theme }) => theme.backgroundBase};
