@@ -68,24 +68,24 @@ export default function RegisterVideo() {
                                 X
                             </button>
                                 <input 
-                                    placeholder="Título do vídeo"
-                                    name="titulo"
-                                    value={formCadastro.values.titulo} 
-                                    onChange={formCadastro.handleChange}
-                                />
-                                <input 
                                     placeholder="URL"
                                     name="url"
                                     value={formCadastro.values.url} 
                                     onChange={formCadastro.handleChange}
                                 />
                                 <input 
+                                    placeholder="Título do vídeo"
+                                    name="titulo"
+                                    value={formCadastro.values.titulo} 
+                                    onChange={formCadastro.handleChange}
+                                />                                
+                                <input 
                                     placeholder="Playlist"
                                     name="playlist"
                                     value={formCadastro.values.playlist} 
                                     onChange={formCadastro.handleChange}
                                 />
-                                <img src={getThumbnail(formCadastro.values.url)} alt="" width={287} height={200}/>
+                                <img src={getThumbnail(formCadastro.values.url)} alt="Thumbnail do vídeo" />
                             <button type="submit">
                                 Cadastrar
                             </button>

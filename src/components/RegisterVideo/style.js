@@ -29,7 +29,7 @@ export const StyledRegisterVideo = styled.div`
   button[type="submit"] {
     background-color: red;
     padding: 8px 16px;
-    border: none;
+    border:none;
     border-radius: 2px;
     cursor: pointer;
     color: inherit;
@@ -70,5 +70,10 @@ export const StyledRegisterVideo = styled.div`
 
   img{
     border-radius: 5px;
+    border: solid;
+    border-color: ${({ theme }) => theme.backgroundBase};
+    width: 287px;
+    height: 200px;
+    margin-bottom: 10px;
   }
 `;
